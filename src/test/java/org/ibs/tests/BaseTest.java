@@ -1,9 +1,13 @@
 package org.ibs.tests;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
@@ -11,7 +15,7 @@ public class BaseTest {
     public static WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
+     static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -21,7 +25,7 @@ public class BaseTest {
     }
 
     @AfterAll
-    static void afterAll() {
+   static void afterAll() {
         driver.close();
         driver.quit();
     }
@@ -32,9 +36,9 @@ public class BaseTest {
     public final String notExoticVegetableName = "Огурец";
 
     public final String exoticFruitNameResult = "5 Папайя Фрукт true";
-    public final String notExoticFruitNameResult = "5 Банан Фрукт false";
-    public final String exoticVegetableNameResult = "5 Кивано Овощ true";
-    public final String notExoticVegetableNameResult = "5 Огурец Овощ false";
+    public final String notExoticFruitNameResult = "6 Банан Фрукт false";
+    public final String exoticVegetableNameResult = "8 Кивано Овощ true";
+    public final String notExoticVegetableNameResult = "7 Огурец Овощ false";
 
 
 }

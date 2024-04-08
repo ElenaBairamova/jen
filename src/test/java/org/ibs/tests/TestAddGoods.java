@@ -14,7 +14,7 @@ public class TestAddGoods extends BaseTest {
 
 
     @Test
-    void addExoticFruitInGoodsList()  {
+    void addExoticFruitInGoodsList() {
         mainPage.sandboxButtonClick().goodsButtonClick();
         goodsPage.addButtonClick()
                 .giveNameGood(exoticFruitName)
@@ -25,30 +25,34 @@ public class TestAddGoods extends BaseTest {
         Assertions.assertEquals(exoticFruitNameResult, table.getText(), "Товар не добавился");
 
     }
+
     @Test
-    void addNotExoticFruitInGoodsList()  {
+    void addNotExoticFruitInGoodsList() {
         mainPage.sandboxButtonClick().goodsButtonClick();
         goodsPage.addButtonClick()
                 .giveNameGood(notExoticFruitName)
                 .typeGoodFruitClick()
                 .saveButtonClick();
-        WebElement table = driver.findElement(By.xpath("//tr[5]"));
+        WebElement table = driver.findElement(By.xpath("//tr[6]"));
         Assertions.assertEquals(notExoticFruitNameResult, table.getText(), "Товар не добавился");
 
     }
 
+
     @Test
-    void addExoticVegetableInGoodsList()  {
+    void addExoticVegetableInGoodsList() throws InterruptedException {
         mainPage.sandboxButtonClick().goodsButtonClick();
         goodsPage.addButtonClick()
                 .giveNameGood(exoticVegetableName)
                 .typeGoodVegetableClick()
                 .checkboxExoticClick()
                 .saveButtonClick();
-        WebElement table = driver.findElement(By.xpath("//tr[5]"));
+        Thread.sleep(3000);
+        WebElement table = driver.findElement(By.xpath("//tr[8]"));
         Assertions.assertEquals(exoticVegetableNameResult, table.getText(), "Товар не добавился");
 
     }
+
     @Test
     void addNotExoticVegetableInGoodsList() {
         mainPage.sandboxButtonClick().goodsButtonClick();
@@ -56,11 +60,10 @@ public class TestAddGoods extends BaseTest {
                 .giveNameGood(notExoticVegetableName)
                 .typeGoodVegetableClick()
                 .saveButtonClick();
-        WebElement table = driver.findElement(By.xpath("//tr[5]"));
+        WebElement table = driver.findElement(By.xpath("//tr[7]"));
         Assertions.assertEquals(notExoticVegetableNameResult, table.getText(), "Товар не добавился");
 
     }
-
 
 
 }
