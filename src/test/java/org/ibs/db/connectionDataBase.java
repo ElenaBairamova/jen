@@ -1,6 +1,5 @@
 package org.ibs.db;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -9,22 +8,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class connectionDataBase {
-    private Connection connection;
+public class connectionDataBase{
+
+    protected Connection connection;
+    protected Statement statement;
 
     @BeforeEach
-    public void connectionDB() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:h2:mem:testdb", "user", "pass");
-        Statement statement = connection.createStatement();
+    public void beforeTests() throws SQLException {
+        connection = DriverManager.getConnection(
+                "jdbc:h2:tcp://localhost:9092/mem:testdb", "user", "pass");
+
+        statement = connection.createStatement();
     }
 
     @AfterEach
-    public void afterAllTest() throws SQLException {
+    public void afterTests() throws SQLException {
         String deleteQuery = "DELETE FROM food WHERE food_id > 4";
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate(deleteQuery);
-        connection.close();
 
+        statement.executeUpdate(deleteQuery);
+
+        connection.close();
     }
+
 }
+

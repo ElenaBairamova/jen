@@ -40,14 +40,13 @@ public class TestAddGoods extends BaseTest {
 
 
     @Test
-    void addExoticVegetableInGoodsList() throws InterruptedException {
+    void addExoticVegetableInGoodsList()  {
         mainPage.sandboxButtonClick().goodsButtonClick();
         goodsPage.addButtonClick()
                 .giveNameGood(exoticVegetableName)
                 .typeGoodVegetableClick()
                 .checkboxExoticClick()
                 .saveButtonClick();
-        Thread.sleep(3000);
         WebElement table = driver.findElement(By.xpath("//tr[8]"));
         Assertions.assertEquals(exoticVegetableNameResult, table.getText(), "Товар не добавился");
 

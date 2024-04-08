@@ -15,7 +15,7 @@ public class BaseTest {
     public static WebDriver driver;
 
     @BeforeAll
-     static void setUpAll() {
+    static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -25,7 +25,7 @@ public class BaseTest {
     }
 
     @AfterAll
-   static void afterAll() {
+    static void afterAll() {
         driver.close();
         driver.quit();
     }
