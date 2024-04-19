@@ -1,8 +1,11 @@
 package org.ibs.steps;
+
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
@@ -17,61 +20,66 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class StepAddGoods {
     private static WebDriver driver;
 
+    private static final org.ibs.managers.DriverManager driverManager = org.ibs.managers.DriverManager.getDriverManager();
+
+    private final org.ibs.managers.TestPropManager props = org.ibs.managers.TestPropManager.getTestPropManager();
+
     @Дано("открыт стенд")
     public void openStand() {
+        if ("remote".equalsIgnoreCase(props.getProperty("type.driver"))) {
+            driverManager.getDriver().get(props.getProperty("selenoid.url"));
+        }
+        driverManager.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driverManager.getDriver().manage().window().maximize();
+        driverManager.getDriver().get(props.getProperty("base.url"));
 
     }
 
     @Когда("Пользователь нажимает на выпадающий список {string}")
     public void clickSandboxButton(String string) {
-        WebElement sandboxButton = driver.findElement(By.xpath("//a [@id='navbarDropdown']"));
-        sandboxButton.click();
+        driverManager.getDriver().findElement(By.xpath("//a [@id='navbarDropdown']")).click();
     }
 
     @И("Пользователь выбирает в выпадающем списке пункт {string}")
     public void clickGoodsButton(String string) {
-        WebElement goodsButton = driver.findElement(By.xpath("//a [@href='/food']"));
-        goodsButton.click();
+        driverManager.getDriver().findElement(By.xpath("//a [@href='/food']")).click();
     }
 
     @И("Пользователь нажимает на кнопку {string}")
     public void clickAddButton(String string) {
-        WebElement addButton = driver.findElement(By.xpath("//button[text()='Добавить']"));
-        addButton.click();
+        driverManager.getDriver().findElement(By.xpath("//button[text()='Добавить']")).click();
     }
 
     @И("Пользователь вводит наименование {string}")
     public void NameGoodExoticFruit(String name) {
-        WebElement nameGood = driver.findElement(By.xpath("//input[@id='name']"));
-        nameGood.sendKeys(name);
+        driverManager.getDriver().findElement(By.xpath("//input[@id='name']")).sendKeys(name);
     }
 
     @И("Пользователь нажимает на тип и выбирает в выпадающем списке тип {string}")
     public void clickDropdownTypeFruit(String goodType) {
-        WebElement goodType1 = driver.findElement(By.id("type"));
+        WebElement goodType1 =  driverManager.getDriver().findElement(By.id("type"));
         goodType1.click();
         if (Objects.equals(goodType, "Овощ")) {
-            WebElement selectedFoodType = driver.findElement(By.xpath("//option[@value='VEGETABLE']"));
+            WebElement selectedFoodType =  driverManager.getDriver().findElement(By.xpath("//option[@value='VEGETABLE']"));
             selectedFoodType.click();
         } else if (Objects.equals(goodType, "Фрукт")) {
-            WebElement selectedFoodType = driver.findElement(By.xpath("//option[@value='FRUIT']"));
+            WebElement selectedFoodType =  driverManager.getDriver().findElement(By.xpath("//option[@value='FRUIT']"));
             selectedFoodType.click();
         }
     }
 
     @И("Пользователь выбирает чек-бокс Экзотический")
     public void clickCheckboxExotic() {
-        WebElement checkBoxExotic = driver.findElement(By.id("exotic"));
+        WebElement checkBoxExotic =  driverManager.getDriver().findElement(By.id("exotic"));
         checkBoxExotic.click();
     }
 
     @И("Пользователь нажимает кнопку {string}")
     public void clickSaveButton(String string) {
-        WebElement saveButton = driver.findElement(By.id("save"));
+        WebElement saveButton =  driverManager.getDriver().findElement(By.id("save"));
         saveButton.click();
 
     }
@@ -83,7 +91,7 @@ public class StepAddGoods {
         List<String> listExoticFruit = Arrays.asList(
                 "5", "Папайя", "Фрукт", "true");
 
-        List<WebElement> lastRowInTableOfGoods = driver.findElements(By.xpath(
+        List<WebElement> lastRowInTableOfGoods =  driverManager.getDriver().findElements(By.xpath(
                 "//tr[5]/*"));
 
         List<String> lastRowInTableOfGoodsStr = new ArrayList<>();
@@ -106,7 +114,7 @@ public class StepAddGoods {
                 "5", "Банан", "Фрукт", "false");
 
 
-        List<WebElement> lastRowInTableOfGoods = driver.findElements(By.xpath(
+        List<WebElement> lastRowInTableOfGoods =  driverManager.getDriver().findElements(By.xpath(
                 "//tr[5]/*"));
 
         List<String> lastRowInTableOfGoodsStr = new ArrayList<>();
@@ -129,7 +137,7 @@ public class StepAddGoods {
                 "5", "Кивано", "Овощ", "true");
 
 
-        List<WebElement> lastRowInTableOfGoods = driver.findElements(By.xpath(
+        List<WebElement> lastRowInTableOfGoods =  driverManager.getDriver().findElements(By.xpath(
                 "//tr[5]/*"));
 
         List<String> lastRowInTableOfGoodsStr = new ArrayList<>();
@@ -152,7 +160,7 @@ public class StepAddGoods {
                 "5", "Огурец", "Овощ", "false");
 
 
-        List<WebElement> lastRowInTableOfGoods = driver.findElements(By.xpath(
+        List<WebElement> lastRowInTableOfGoods =  driverManager.getDriver().findElements(By.xpath(
                 "//tr[5]/*"));
 
         List<String> lastRowInTableOfGoodsStr = new ArrayList<>();
@@ -169,14 +177,9 @@ public class StepAddGoods {
 
     @И("Пользователь выбирает в выпадающем списке пункт Сброс данных")
     public void clickDeleteData() {
-        WebElement deleteDataButton = driver.findElement(By.xpath("//a [@id='reset']"));
+        WebElement deleteDataButton =  driverManager.getDriver().findElement(By.xpath("//a [@id='reset']"));
         deleteDataButton.click();
     }
 
-    @Тогда("Закрываем соединение")
-    public void finish() {
-        driver.close();
-        driver.quit();
-    }
 
 }
