@@ -1,10 +1,11 @@
 node('unix') {
-    stage('Git checkout') {
-        checkout scm
-    }
+ stage('git')
+  git branch: 'main', url: 'https://github.com/ElenaBairamova/jen'
     stage('Run tests') {
         withMaven(globalMavenSettingsConfig: '', jdk: '', maven: 'Default', mavenSettingsConfig: '', traceability: true) {
-            sh 'mvn clean test -Dtype.browser=${browser}'
+        sh 'mvn clean test'
+
+        }
         }
     }
     stage('Allure reports') {
