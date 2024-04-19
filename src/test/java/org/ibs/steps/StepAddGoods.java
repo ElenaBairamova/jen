@@ -29,7 +29,7 @@ public class StepAddGoods {
 
     @Дано("открыт стенд")
     public void openStand() {
-        if ("remote".equalsIgnoreCase(props.getProperty("type.driver"))) {
+        if ("remote".equalsIgnoreCase(props.getProperty("driver.type"))) {
             driverManager.getDriver().get(props.getProperty("selenoid.url"));
         }
         driverManager.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

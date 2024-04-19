@@ -47,7 +47,7 @@ public class DriverManager {
     }
 
     private void initDriver() {
-        if ("remote".equalsIgnoreCase(props.getProperty("type.driver"))) {
+        if ("remote".equalsIgnoreCase(props.getProperty("driver.type"))) {
             initRemoteDriver();
         } else {
             if (OS.isFamilyWindows()) {
