@@ -1,43 +1,28 @@
 package org.ibs.steps;
-
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-import org.h2.command.query.Select;
-import org.ibs.page.GoodsPage;
-import org.ibs.page.MainPage;
-import org.ibs.runner.TestRunner;
-import org.ibs.tests.BaseTest;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.net.URL;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static org.openqa.selenium.remote.ErrorCodes.TIMEOUT;
 
 
 public class StepAddGoods {
-    public static WebDriver driver;
+    private static WebDriver driver;
 
     @Дано("открыт стенд")
     public void openStand() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.get("http://localhost:8080");
 
     }
 
