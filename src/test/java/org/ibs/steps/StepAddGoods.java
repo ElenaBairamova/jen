@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
 public class StepAddGoods {
     private static WebDriver driver;
 
-    private static final org.ibs.managers.DriverManager driverManager = org.ibs.managers.DriverManager.getDriverManager();
+    private static final manager.DriverManager driverManager = manager.DriverManager.getDriverManager();
 
-    private final org.ibs.managers.TestPropManager props = org.ibs.managers.TestPropManager.getTestPropManager();
+    private final manager.TestPropManager props = manager.TestPropManager.getTestPropManager();
 
     @Дано("открыт стенд")
     public void openStand() {

@@ -1,4 +1,4 @@
-package org.ibs.managers;
+package manager;
 
 import java.io.File;
 import java.io.IOException;

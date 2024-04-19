@@ -1,4 +1,4 @@
-package org.ibs.managers;
+package manager;
 
 import org.apache.commons.exec.OS;
 import org.junit.jupiter.api.Assertions;
@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.ibs.managers.TestPropManager;
+import manager.TestPropManager;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.HashMap;
