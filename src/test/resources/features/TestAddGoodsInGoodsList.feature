@@ -1,7 +1,13 @@
 # language: ru
 
 @all
+@exoticFruit
+@exoticVegetable
+@notExoticFruit
+@notExoticVegetable
+
 @features
+
 Функция: Добавление экзотического товара
 
   Предыстория:
